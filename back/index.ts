@@ -1,12 +1,31 @@
 import express, { type Request, type Response } from 'express'
+import headers from './headers'
+import getModifiedRestData from './getModifiedRestData'
 
 const app = express()
-const PORT = 3000
+const PORT: number = 3000
 
-// Пример ручки с параметрами: /greet/:name
 app.get('/api/:yaSlug', (req: Request, res: Response) => {
   const { yaSlug } = req.params
-  res.send(`Hello!!!, ${yaSlug}!`)
+
+  fetch(`https://eda.yandex.ru/api/v2/menu/retrieve/${yaSlug}`, {
+    headers: headers,
+    credentials: 'include',
+  })
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error('Network response was not ok ' + response.status)
+      }
+      return response.json()
+    })
+    .then((data) => {
+      const restData = getModifiedRestData(data)
+      res.send(restData)
+      // res.send(data)
+    })
+    .catch((error) => {
+      console.error('Ошибка:', error)
+    })
 })
 
 app.listen(PORT, () => {
