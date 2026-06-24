@@ -5,16 +5,17 @@ type itemData = {
   ingredients: string
   price: number
   picture: string
-  measure: string
-  quantity: number
+  measure?: string
+  quantity?: number
   nutrients?: {
-    calories: string
-    proteins: string
-    fats: string
-    carbohydrates: string
+    calories: number
+    proteins: number
+    fats: number
+    carbohydrates: number
   }
-  options?: Array<{ optionName: string; optionPrice: number }>
-  optionsName?: string
+  // options?: Array<{ optionName: string; optionPrice: number }>
+  // optionsName?: string
+  options?: string
 }
 
 type restDataType = Array<itemData>

@@ -14,6 +14,12 @@ app.get('/api/:yaSlug', (req: Request, res: Response) => {
   })
     .then((response) => {
       if (!response.ok) {
+        if (response.status === 404) {
+          res.status(404).json({
+            success: false,
+            message: 'Resource not found for slug: ' + yaSlug,
+          })
+        }
         throw new Error('Network response was not ok ' + response.status)
       }
       return response.json()
@@ -24,7 +30,7 @@ app.get('/api/:yaSlug', (req: Request, res: Response) => {
       // res.send(data)
     })
     .catch((error) => {
-      console.error('Ошибка:', error)
+      console.error('Ошибка:', error, ' slug:', yaSlug)
     })
 })
 
