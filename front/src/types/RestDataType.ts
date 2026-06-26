@@ -1,10 +1,12 @@
-type itemData = {
+import exp from 'constants'
+
+type itemDataType = {
   category: string
   name: string
   description: string
   ingredients: string
   price: number
-  picture: string | undefined
+  picture: string
   measure?: string
   quantity?: number
   nutrients?: {
@@ -18,17 +20,6 @@ type itemData = {
   options?: string
 }
 
-type restDataType = Array<itemData>
+type restDataType = Array<itemDataType>
 
-type originalData = {
-  payload: {
-    categories: [
-      {
-        name: string
-        items: any[]
-      }
-    ]
-  }
-}
-
-export { restDataType, originalData }
+export type { itemDataType, restDataType }

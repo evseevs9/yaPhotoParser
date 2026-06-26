@@ -50,10 +50,9 @@ const getModifiedRestData = (data: originalData): restDataType => {
           (obj: { title: string; text: string }) => obj.title === 'Состав'
         )?.text,
         price: item.price,
-        picture: `https://eda.yandex.ru${item?.picture?.uri.replace(
-          '-{w}x{h}',
-          ''
-        )}`,
+        picture: item?.picture?.uri
+          ? `https://eda.yandex.ru${item?.picture?.uri.replace('-{w}x{h}', '')}`
+          : undefined,
         measure: measure,
         quantity: quantity,
         nutrients: item?.nutrients_detailed

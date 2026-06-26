@@ -1,9 +1,16 @@
 import express, { type Request, type Response } from 'express'
+const cors = require('cors')
 import headers from './headers'
 import getModifiedRestData from './getModifiedRestData'
 
 const app = express()
 const PORT: number = 3000
+
+app.use(
+  cors({
+    origin: 'http://localhost:4000',
+  })
+)
 
 app.get('/api/:yaSlug', (req: Request, res: Response) => {
   const { yaSlug } = req.params
