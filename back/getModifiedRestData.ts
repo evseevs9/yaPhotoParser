@@ -7,6 +7,8 @@ import { originalData } from './types'
 const getModifiedRestData = (data: originalData): restDataType => {
   const restData: restDataType = []
 
+  let idCounter = 0
+
   data.payload.categories.forEach((category) => {
     category.items.forEach((item) => {
       let measure: string | undefined = item?.measure?.measure_unit
@@ -43,6 +45,7 @@ const getModifiedRestData = (data: originalData): restDataType => {
       }
 
       restData.push({
+        id: idCounter,
         category: category.name,
         name: item.name,
         description: item.description,
@@ -65,6 +68,7 @@ const getModifiedRestData = (data: originalData): restDataType => {
           : undefined,
         options: options,
       })
+      idCounter++
     })
   })
   return restData

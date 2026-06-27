@@ -1,4 +1,5 @@
 type itemData = {
+  id: number
   category: string
   name: string
   description: string

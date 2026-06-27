@@ -1,6 +1,5 @@
-import exp from 'constants'
-
 type itemDataType = {
+  id: number
   category: string
   name: string
   description: string
@@ -15,8 +14,6 @@ type itemDataType = {
     fats: number
     carbohydrates: number
   }
-  // options?: Array<{ optionName: string; optionPrice: number }>
-  // optionsName?: string
   options?: string
 }
 
