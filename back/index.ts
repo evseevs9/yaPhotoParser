@@ -1,10 +1,43 @@
 import express, { type Request, type Response } from 'express'
 const cors = require('cors')
+const winston = require('winston')
 import headers from './headers'
 import getModifiedRestData from './getModifiedRestData'
 
 const app = express()
-const PORT: number = 3000
+const PORT = 3000
+
+interface LogInfo {
+  timestamp: string
+  level: string
+  message: string
+  [key: string]: any
+}
+
+const logger = winston.createLogger({
+  level: 'info',
+  format: winston.format.combine(
+    winston.format.timestamp(),
+    winston.format.printf((info: LogInfo) => {
+      const { timestamp, level, message } = info
+      return `[${timestamp}] ${level.toUpperCase()}: ${message}`
+    })
+  ),
+  transports: [new winston.transports.File({ filename: 'app.log' })],
+})
+
+app.use((req, res, next) => {
+  const startTime = Date.now()
+
+  res.on('finish', () => {
+    const duration = Date.now() - startTime
+    logger.info(
+      `${req.method} ${req.originalUrl} - ${res.statusCode} (${duration}ms)`
+    )
+  })
+
+  next()
+})
 
 app.use(
   cors({
@@ -34,10 +67,9 @@ app.get('/api/:yaSlug', (req: Request, res: Response) => {
     .then((data) => {
       const restData = getModifiedRestData(data)
       res.send(restData)
-      // res.send(data)
     })
     .catch((error) => {
-      console.error('Ошибка:', error, ' slug:', yaSlug)
+      logger.error(`Ошибка: ${error.message}, slug: ${yaSlug}`)
     })
 })
 

@@ -10,6 +10,9 @@ const getModifiedRestData = (data: originalData): restDataType => {
   let idCounter = 0
 
   data.payload.categories.forEach((category) => {
+    if (category.name.toLocaleLowerCase() === 'выбор пользователей') {
+      return
+    }
     category.items.forEach((item) => {
       let measure: string | undefined = item?.measure?.measure_unit
       let quantity: number | undefined = item?.measure?.value

@@ -27,15 +27,27 @@ function App() {
     setSelectedRestData((prevData) => prevData.filter((item) => item.id !== id))
   }
 
+  const [slugName, setSlugName] = useState<string>('')
+
   return (
     <div className='App'>
       <h1>YaPhotoParser</h1>
-      <SearchForm setRestData={setRestData} />
+      {slugName ? (
+        <p>{slugName}</p>
+      ) : (
+        <SearchForm setRestData={setRestData} setSlugName={setSlugName} />
+      )}
+
       <div className='container'>
-        <RestDataList restData={restData} addSelectedItem={addSelectedItem} />
+        <RestDataList
+          restData={restData}
+          addSelectedItem={addSelectedItem}
+          slugName={slugName}
+        />
         <SelectedRestDataItemList
           selectedRestData={selectedRestData}
           removeSelectedItem={removeSelectedItem}
+          slugName={slugName}
         />
       </div>
     </div>
