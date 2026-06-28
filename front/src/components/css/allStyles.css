@@ -1,0 +1,112 @@
+/* Центрирование контейнера */
+.container {
+  max-width: 1200px;
+  margin: 0 auto; /* по центру страницы */
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+/* Поисковая строка */
+.header {
+  margin-bottom: 20px;
+  text-align: center; /* по центру */
+}
+
+.columns {
+  display: flex; /* делаем контейнер гибким */
+  gap: 20px; /* расстояние между колонками, по желанию */
+}
+
+.column {
+  flex: 1; /* делит ширину поровну между двумя колонками */
+  /* можно добавить дополнительные стили по необходимости */
+}
+
+img {
+  max-width: 250px;
+  border-radius: 15px;
+  margin-right: 10px;
+}
+
+.item {
+  padding: 8px;
+  border: 1px solid rgb(90, 88, 88);
+  border-radius: 15px;
+  margin-top: 15px;
+  display: flex;
+  align-items: start;
+  justify-content: space-between;
+  /* height: 190px; */
+  box-shadow: 2px -4px 8px rgba(0, 0, 0, 0.4);
+  transition: box-shadow 0.3s ease;
+}
+
+.head-item {
+  padding: 8px;
+  border: 1px solid rgb(90, 88, 88);
+  border-radius: 15px;
+  margin-top: 10px;
+  box-shadow: 2px -4px 8px rgba(0, 0, 0, 0.3);
+  transition: box-shadow 0.3s ease;
+}
+
+.item:hover,
+.head-item:hover {
+  box-shadow: 2px -4px 14px rgba(0, 0, 0, 0.5);
+}
+
+.description {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.item-buttons {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  height: 100%;
+}
+
+button {
+  font-size: 16px;
+  margin: 4px;
+  border-radius: 10px;
+  padding: 5px;
+  background-color: rgb(228, 225, 225);
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.button-x {
+  font-size: 20px;
+}
+
+button:hover {
+  background-color: rgb(165, 166, 167);
+}
+
+button:active {
+  background-color: rgb(134, 135, 136);
+  box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.2);
+}
+
+input {
+  margin: 4px;
+  font-size: 16px;
+}
+
+.item-button {
+  border: 0;
+  background-color: rgb(255, 255, 255);
+}
+
+input {
+  width: 60%;
+  border-radius: 10px;
+  font-size: 20px;
+  padding: 4px;
+  padding-left: 8px;
+  margin-right: 0;
+}

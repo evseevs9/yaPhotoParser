@@ -2,8 +2,6 @@ import { FC } from 'react'
 import type { itemDataType } from '../types/RestDataType'
 import { MdDeleteForever } from 'react-icons/md'
 
-import './css/RestDataItem.css'
-
 interface SelectedRestDataItemProps {
   selectedRestDataItem: itemDataType
   removeSelectedItem: (id: number) => void
@@ -26,21 +24,22 @@ const SelectedRestDataItem: FC<SelectedRestDataItemProps> = ({
           loading='lazy'
         />
       </a>
-      <div className='item-details'>
-        <div className='field'>
-          <h2>{selectedRestDataItem.name}</h2>
-          <div>Категория: {selectedRestDataItem.category}</div>
-          <div>Цена: {selectedRestDataItem.price} ₽</div>
-          <div>
-            Вес/Объем:{' '}
-            {selectedRestDataItem?.quantity && selectedRestDataItem?.measure
-              ? `${selectedRestDataItem?.quantity} ${selectedRestDataItem?.measure}`
-              : 'не указан'}
-          </div>
+      <div className='description'>
+        <h2>{selectedRestDataItem.name}</h2>
+        <div>Категория: {selectedRestDataItem.category}</div>
+        <div>Цена: {selectedRestDataItem.price} ₽</div>
+        <div>
+          Вес/Объем:{' '}
+          {selectedRestDataItem?.quantity && selectedRestDataItem?.measure
+            ? `${selectedRestDataItem?.quantity} ${selectedRestDataItem?.measure}`
+            : 'не указан'}
         </div>
       </div>
-      <div className='field'>
-        <button onClick={() => removeSelectedItem(selectedRestDataItem.id)}>
+      <div className='item-buttons'>
+        <button
+          onClick={() => removeSelectedItem(selectedRestDataItem.id)}
+          className='item-button'
+        >
           <MdDeleteForever size={30} />
         </button>
       </div>

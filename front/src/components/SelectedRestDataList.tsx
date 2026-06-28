@@ -18,10 +18,12 @@ const SelectedRestDataList: FC<SelectedRestDataItemProps> = ({
     <div>
       {selectedRestData.length > 0 ? (
         <>
-          <button onClick={() => downloadZip(selectedRestData, slugName)}>
-            Скачать выбранные архивом
-          </button>
-
+          <div className='head-item'>
+            <h3>Выбранные позиции: </h3>
+            <button onClick={() => downloadZip(selectedRestData, slugName)}>
+              Скачать выбранные архивом
+            </button>
+          </div>
           {selectedRestData.map((item) => (
             <SelectedRestDataItem
               key={item.id}

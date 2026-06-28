@@ -17,7 +17,7 @@ interface LogInfo {
 const logger = winston.createLogger({
   level: 'info',
   format: winston.format.combine(
-    winston.format.timestamp(),
+    winston.format.timestamp({ format: 'YYYY-MM-DD HH:mm:ss' }),
     winston.format.printf((info: LogInfo) => {
       const { timestamp, level, message } = info
       return `[${timestamp}] ${level.toUpperCase()}: ${message}`

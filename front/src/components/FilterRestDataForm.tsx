@@ -18,7 +18,9 @@ const FilterRestDataForm: FC<FilterRestDataFormProps> = ({
         onChange={(event) => setFilterValue(event.target.value)}
         placeholder='фильтр...'
       />
-      <button onClick={() => setFilterValue('')}>X</button>
+      <button onClick={() => setFilterValue('')} className='button-x'>
+        X
+      </button>
     </div>
   )
 }

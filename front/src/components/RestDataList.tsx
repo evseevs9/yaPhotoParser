@@ -22,17 +22,20 @@ const RestDataList: FC<RestDataListProps> = ({
     <div>
       {restData.length > 0 ? (
         <>
-          <FilterRestDataForm
-            filterValue={filterValue}
-            setFilterValue={setFilterValue}
-          />
-          <p>Псевдо-категория "Выбор пользователей" удалена</p>
-          <button onClick={() => downloadZip(restData, slugName)}>
-            Скачать все архивом
-          </button>
-          <button onClick={() => downloadXlsx(restData, slugName)}>
-            Скачать .xlsx
-          </button>
+          <div className='head-item'>
+            <h3>Все позиции:</h3>
+            <p>Псевдо-категория "Выбор пользователей" удалена</p>
+            <button onClick={() => downloadZip(restData, slugName)}>
+              Скачать все архивом
+            </button>
+            <button onClick={() => downloadXlsx(restData, slugName)}>
+              Скачать .xlsx
+            </button>
+            <FilterRestDataForm
+              filterValue={filterValue}
+              setFilterValue={setFilterValue}
+            />
+          </div>
           {restData
             .filter((item) =>
               item.name.toLowerCase().includes(filterValue.toLowerCase())

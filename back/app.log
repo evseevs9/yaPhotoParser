@@ -12,3 +12,18 @@
 [2026-06-28T10:42:15.549Z] INFO: GET /api/shashlychok_novaya_10 - 200 (292ms)
 [2026-06-28T10:42:38.985Z] INFO: GET /api/shashlychok_drlux - 200 (401ms)
 [2026-06-28T10:44:25.323Z] INFO: GET /api/raki__pivo_ryhqg - 200 (327ms)
+[2026-06-28T11:07:38.094Z] INFO: GET /api/shashlychok_novaya_10 - 304 (467ms)
+[2026-06-28T11:11:33.875Z] INFO: GET /api/stolovaya_kolobok_bvsp2 - 304 (331ms)
+[2026-06-28T11:26:21.614Z] INFO: GET /api/stolovaya_kolobok_bvsp2 - 200 (423ms)
+[2026-06-28T11:29:31.599Z] INFO: GET /api/shashlychok_drlux - 200 (421ms)
+[2026-06-28T12:04:51.968Z] INFO: GET /api/stolovaya_kolobok_bvsp2 - 304 (375ms)
+[2026-06-28T12:53:52.978Z] INFO: GET /api/stolovaya_kolobok_bvsp2 - 200 (431ms)
+[2026-06-28T12:57:39.987Z] ERROR: Ошибка: Network response was not ok 404, slug: gdsfgdfgfg
+[2026-06-28T12:57:39.992Z] INFO: GET /api/gdsfgdfgfg - 404 (342ms)
+[2026-06-28T12:57:50.956Z] INFO: GET /api/shaurma_city_2wgfc - 200 (340ms)
+[2026-06-28T13:08:53.125Z] INFO: GET /api/shashlychok_drlux - 304 (1435ms)
+[2026-06-28T13:09:28.318Z] ERROR: Ошибка: Network response was not ok 404, slug: slug
+[2026-06-28T13:09:28.319Z] INFO: GET /api/slug - 404 (340ms)
+[2026-06-28 16:12:36] ERROR: Ошибка: Network response was not ok 404, slug: gdsfgdfgfg
+[2026-06-28 16:12:36] INFO: GET /api/gdsfgdfgfg - 404 (417ms)
+[2026-06-28 16:14:26] INFO: GET /api/shashlychok_novaya_10 - 304 (317ms)

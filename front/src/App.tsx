@@ -3,7 +3,7 @@ import { restDataType, itemDataType } from './types/RestDataType'
 import SearchForm from './components/SearchForm'
 import RestDataList from './components/RestDataList'
 import SelectedRestDataItemList from './components/SelectedRestDataList'
-import './components/css/App.css'
+import './components/css/allStyles.css'
 
 function App() {
   const [restData, setRestData] = useState<restDataType>([])
@@ -30,25 +30,30 @@ function App() {
   const [slugName, setSlugName] = useState<string>('')
 
   return (
-    <div className='App'>
-      <h1>YaPhotoParser</h1>
-      {slugName ? (
-        <p>{slugName}</p>
-      ) : (
-        <SearchForm setRestData={setRestData} setSlugName={setSlugName} />
-      )}
-
-      <div className='container'>
-        <RestDataList
-          restData={restData}
-          addSelectedItem={addSelectedItem}
-          slugName={slugName}
-        />
-        <SelectedRestDataItemList
-          selectedRestData={selectedRestData}
-          removeSelectedItem={removeSelectedItem}
-          slugName={slugName}
-        />
+    <div className='container'>
+      <div className='header'>
+        <h1>YaPhotoParser</h1>
+        {slugName ? (
+          <h3>{slugName}</h3>
+        ) : (
+          <SearchForm setRestData={setRestData} setSlugName={setSlugName} />
+        )}
+      </div>
+      <div className='columns'>
+        <div className='column'>
+          <RestDataList
+            restData={restData}
+            addSelectedItem={addSelectedItem}
+            slugName={slugName}
+          />
+        </div>
+        <div className='column'>
+          <SelectedRestDataItemList
+            selectedRestData={selectedRestData}
+            removeSelectedItem={removeSelectedItem}
+            slugName={slugName}
+          />
+        </div>
       </div>
     </div>
   )

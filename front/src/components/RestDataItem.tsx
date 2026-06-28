@@ -4,8 +4,6 @@ import type { itemDataType } from '../types/RestDataType'
 import { RiExpandRightLine } from 'react-icons/ri'
 import { FaDownload } from 'react-icons/fa6'
 
-import './css/RestDataItem.css'
-
 interface RestDataItemProps {
   restDataItem: itemDataType
   addSelectedItem: (item: itemDataType) => void
@@ -29,21 +27,22 @@ const RestDataItem: FC<RestDataItemProps> = ({
           loading='lazy'
         />
       </a>
-      <div className='item-details'>
-        <div className='field'>
-          <h2>{restDataItem.name}</h2>
-          <div>Категория: {restDataItem.category}</div>
-          <div>Цена: {restDataItem.price} ₽</div>
-          <div>
-            Вес/Объем:{' '}
-            {restDataItem?.quantity && restDataItem?.measure
-              ? `${restDataItem?.quantity} ${restDataItem?.measure}`
-              : 'не указан'}
-          </div>
+      <div className='description'>
+        <h2>{restDataItem.name}</h2>
+        <div>Категория: {restDataItem.category}</div>
+        <div>Цена: {restDataItem.price} ₽</div>
+        <div>
+          Вес/Объем:{' '}
+          {restDataItem?.quantity && restDataItem?.measure
+            ? `${restDataItem?.quantity} ${restDataItem?.measure}`
+            : 'не указан'}
         </div>
       </div>
-      <div className='field'>
-        <button onClick={() => addSelectedItem(restDataItem)}>
+      <div className='item-buttons'>
+        <button
+          onClick={() => addSelectedItem(restDataItem)}
+          className='item-button'
+        >
           <RiExpandRightLine size={30} />
         </button>
         <button
@@ -53,6 +52,7 @@ const RestDataItem: FC<RestDataItemProps> = ({
               `${restDataItem.name} ${restDataItem.price}р`
             )
           }
+          className='item-button'
         >
           <FaDownload size={30} />
         </button>
