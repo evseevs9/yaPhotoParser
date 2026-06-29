@@ -41,9 +41,25 @@ app.use((req, res, next) => {
 
 app.use(
   cors({
-    origin: 'https://yaphotoparser.evseevs9.ru/',
+    origin: [
+      'http://yaphotoparser.evseevs9.ru',
+      'https://yaphotoparser.evseevs9.ru',
+    ],
   })
 )
+
+app.use((req, res, next) => {
+  const allowedOrigins = [
+    'http://yaphotoparser.evseevs9.ru',
+    'https://yaphotoparser.evseevs9.ru',
+  ]
+  const origin = req.headers.origin
+
+  if (!origin || !allowedOrigins.includes(origin)) {
+    return res.status(403).json({ error: 'Access denied' })
+  }
+  next()
+})
 
 app.get('/api/:yaSlug', (req: Request, res: Response) => {
   const { yaSlug } = req.params
