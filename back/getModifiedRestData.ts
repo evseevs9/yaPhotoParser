@@ -1,6 +1,3 @@
-// проверить вес, что там купер хочет именно. г или кг или без разницы. +
-// разобраться с опциями. обязательными-необязательными. их количеством. чтобы привести к нужному виду.
-
 import { restDataType } from './types'
 import { originalData } from './types'
 
@@ -51,6 +48,7 @@ const getModifiedRestData = (data: originalData): restDataType => {
         id: idCounter,
         category: category.name,
         name: item.name,
+        nameForSave: item.name.replace(/[\\.\/:*?"<>|]/g, ''),
         description: item.description,
         ingredients: item?.descriptions?.find(
           (obj: { title: string; text: string }) => obj.title === 'Состав'

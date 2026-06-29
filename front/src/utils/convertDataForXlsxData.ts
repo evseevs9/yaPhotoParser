@@ -42,7 +42,7 @@ const convertDataForXlsxData = (originData: restDataType): DataForXlsxType => {
 
     return {
       Категория: item.category,
-      Название: item.name,
+      Название: item.nameForSave,
       Состав: ingredients,
       Описание: description,
       Вес: weight,

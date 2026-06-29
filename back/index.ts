@@ -41,7 +41,7 @@ app.use((req, res, next) => {
 
 app.use(
   cors({
-    origin: 'http://localhost:4000',
+    origin: 'https://yaphotoparser.evseevs9.ru/',
   })
 )
 

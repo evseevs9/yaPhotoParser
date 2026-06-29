@@ -12,7 +12,7 @@ const downloadZip = async (data: restDataType, nameZip: string) => {
     const response = await fetch(item.picture)
     const blob = await response.blob()
 
-    zip.file(`${item.name} - ${item.price}р.jpg`, blob)
+    zip.file(`${item.nameForSave} - ${item.price}р.jpg`, blob)
   }
 
   const content = await zip.generateAsync({ type: 'blob' })

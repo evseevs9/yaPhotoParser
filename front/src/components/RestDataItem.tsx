@@ -49,7 +49,7 @@ const RestDataItem: FC<RestDataItemProps> = ({
           onClick={() =>
             handleDownload(
               srcImage,
-              `${restDataItem.name} ${restDataItem.price}р`
+              `${restDataItem.nameForSave} ${restDataItem.price}р`
             )
           }
           className='item-button'

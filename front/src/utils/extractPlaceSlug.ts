@@ -1,14 +1,12 @@
 function extractPlaceSlug(url: string) {
-  if (url.includes('eda.yandex.ru')) {
+  if (url.includes('eda.yandex.ru') && url.includes('placeSlug=')) {
     const regex = /[?&]placeSlug=([^?&]+)/
     const match = url.match(regex)
     if (match && match[1]) {
       return match[1]
     }
-    return null
-  } else {
-    return url
   }
+  return 'invalidSlug'
 }
 
 export default extractPlaceSlug

@@ -2,6 +2,7 @@ type itemData = {
   id: number
   category: string
   name: string
+  nameForSave: string
   description: string
   ingredients: string
   price: number
