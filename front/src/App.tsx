@@ -3,7 +3,13 @@ import { restDataType, itemDataType } from './types/RestDataType'
 import SearchForm from './components/SearchForm'
 import RestDataList from './components/RestDataList'
 import SelectedRestDataItemList from './components/SelectedRestDataList'
+import { motion, AnimatePresence } from 'framer-motion'
+
+import '@a1rth/css-normalize'
 import './components/css/allStyles.css'
+import UpButton from './components/UpButton'
+import RefreshButton from './components/RefreshButton'
+import ThemeButton from './components/ThemeButton'
 
 function App() {
   const [restData, setRestData] = useState<restDataType>([])
@@ -30,32 +36,62 @@ function App() {
   const [slugName, setSlugName] = useState<string>('')
 
   return (
-    <div className='container'>
-      <div className='header'>
-        <h1>YaPhotoParser</h1>
-        {slugName ? (
-          <h3>{slugName}</h3>
-        ) : (
-          <SearchForm setRestData={setRestData} setSlugName={setSlugName} />
-        )}
-      </div>
-      <div className='columns'>
-        <div className='column'>
+    <>
+      <RefreshButton
+        setRestData={setRestData}
+        setSelectedRestData={setSelectedRestData}
+        setSlugName={setSlugName}
+        slugName={slugName}
+      />
+      <ThemeButton />
+      <div className='container'>
+        <div className='header'>
+          <AnimatePresence mode='wait'>
+            {slugName ? (
+              <motion.h3
+                key='slugName'
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 1 }}
+              >
+                {slugName}
+              </motion.h3>
+            ) : (
+              <motion.div
+                key='searchForm'
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.7 }}
+              >
+                <SearchForm
+                  setRestData={setRestData}
+                  setSlugName={setSlugName}
+                />
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </div>
+
+        <div className='column-main'>
           <RestDataList
             restData={restData}
             addSelectedItem={addSelectedItem}
             slugName={slugName}
           />
         </div>
-        <div className='column'>
+        <div className='column-selected'>
           <SelectedRestDataItemList
+            isrestDataLength={restData.length > 0}
             selectedRestData={selectedRestData}
             removeSelectedItem={removeSelectedItem}
             slugName={slugName}
           />
         </div>
       </div>
-    </div>
+      <UpButton />
+    </>
   )
 }
 

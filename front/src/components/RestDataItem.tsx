@@ -1,8 +1,9 @@
 import { FC } from 'react'
 import handleDownload from '../utils/handleDownload'
 import type { itemDataType } from '../types/RestDataType'
-import { RiExpandRightLine } from 'react-icons/ri'
-import { FaDownload } from 'react-icons/fa6'
+import { FolderDown, ChevronsRight } from 'lucide-react'
+
+import { motion } from 'framer-motion'
 
 interface RestDataItemProps {
   restDataItem: itemDataType
@@ -17,8 +18,26 @@ const RestDataItem: FC<RestDataItemProps> = ({
     ? restDataItem.picture
     : '/img/noPhoto.jpg'
 
+  const itemAnimation = {
+    hidden: { opacity: 0 },
+    visible: { opacity: 1 },
+  }
+
+  const itemButtonsAnimation = {
+    hidden: { x: 20, opacity: 0 },
+    bvisible: { x: 0, opacity: 1 },
+  }
+
   return (
-    <div className='item'>
+    <motion.div
+      initial='hidden'
+      whileInView='visible'
+      viewport={{ once: true }}
+      whileHover='bvisible'
+      transition={{ duration: 0.3 }}
+      variants={itemAnimation}
+      className='item'
+    >
       <a href={srcImage} target='_blank' rel='noopener noreferrer'>
         <img
           src={srcImage}
@@ -38,12 +57,16 @@ const RestDataItem: FC<RestDataItemProps> = ({
             : 'не указан'}
         </div>
       </div>
-      <div className='item-buttons'>
+      <motion.div
+        variants={itemButtonsAnimation}
+        transition={{ duration: 0.3 }}
+        className='item-buttons'
+      >
         <button
           onClick={() => addSelectedItem(restDataItem)}
           className='item-button'
         >
-          <RiExpandRightLine size={30} />
+          <ChevronsRight size={30} />
         </button>
         <button
           onClick={() =>
@@ -54,10 +77,10 @@ const RestDataItem: FC<RestDataItemProps> = ({
           }
           className='item-button'
         >
-          <FaDownload size={30} />
+          <FolderDown size={30} />
         </button>
-      </div>
-    </div>
+      </motion.div>
+    </motion.div>
   )
 }
 

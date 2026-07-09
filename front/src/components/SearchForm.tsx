@@ -74,7 +74,6 @@ const SearchForm: FC<SearchFormProps> = ({ setRestData, setSlugName }) => {
         style={{
           border: isValid ? '' : '3px solid red',
           cursor: isValid ? 'pointer' : 'not-allowed',
-          fontSize: 20,
         }}
       >
         Искать

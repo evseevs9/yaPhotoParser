@@ -1,4 +1,4 @@
-import { FC, useState } from 'react'
+import { FC } from 'react'
 
 interface FilterRestDataFormProps {
   filterValue: string
@@ -10,7 +10,7 @@ const FilterRestDataForm: FC<FilterRestDataFormProps> = ({
   setFilterValue,
 }) => {
   return (
-    <div>
+    <div style={{ width: '100%', flex: 1 }}>
       <input
         type='text'
         name='filterRestData'
