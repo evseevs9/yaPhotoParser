@@ -10,7 +10,7 @@ const FilterRestDataForm: FC<FilterRestDataFormProps> = ({
   setFilterValue,
 }) => {
   return (
-    <div style={{ width: '100%', flex: 1 }}>
+    <div className='filter-block'>
       <input
         type='text'
         name='filterRestData'

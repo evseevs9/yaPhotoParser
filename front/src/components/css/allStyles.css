@@ -197,7 +197,6 @@ img {
   color: var(--color-btn-text);
   background-color: var(--color-btn-bg);
   transition: background-color 0.5s ease, color 0.5s ease;
-  width: 90%;
 }
 
 .head-item input:focus {
@@ -262,6 +261,20 @@ img {
 .head-item button:active {
   filter: brightness(0.85);
   transition: 0.3s;
+}
+.filter-block {
+  width: 100%;
+  display: flex;
+}
+
+.filter-block input {
+  width: 100%;
+  flex-grow: 1;
+}
+
+.filter-block .button-x {
+  width: 40px;
+  flex-shrink: 0;
 }
 
 @media (max-width: 1400px) {
