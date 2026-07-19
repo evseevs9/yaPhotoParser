@@ -2,6 +2,7 @@ import { FC } from 'react'
 import type { itemDataType } from '../types/RestDataType'
 import { X } from 'lucide-react'
 import { motion } from 'framer-motion'
+import ImageSize from './ImageSize'
 
 interface SelectedRestDataItemProps {
   selectedRestDataItem: itemDataType
@@ -52,6 +53,7 @@ const SelectedRestDataItem: FC<SelectedRestDataItemProps> = ({
               ? `${selectedRestDataItem?.quantity} ${selectedRestDataItem?.measure}`
               : 'не указан'}
           </div>
+          <ImageSize url={srcImage} />
         </div>
         <motion.div
           variants={itemButtonsAnimation}

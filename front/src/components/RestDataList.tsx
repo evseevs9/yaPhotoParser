@@ -6,19 +6,45 @@ import { motion, AnimatePresence } from 'framer-motion'
 import FilterRestDataForm from './FilterRestDataForm'
 import downloadZip from '../utils/downloadZip'
 import downloadXlsx from '../utils/downloadXlsx'
+import LoadingButton from './LoadingButton'
 
 interface RestDataListProps {
   restData: restDataType
   addSelectedItem: (item: itemDataType) => void
   slugName: string
+  filterValue: string
+  setFilterValue: (value: string) => void
 }
 
 const RestDataList: FC<RestDataListProps> = ({
   restData,
   addSelectedItem,
   slugName,
+  filterValue,
+  setFilterValue,
 }) => {
-  const [filterValue, setFilterValue] = useState<string>('')
+  const [isAllLoading, setIsAllLoading] = useState(false)
+  const [isXLSXLoading, setIsXLSXLoading] = useState(false)
+
+  const handleClicAllkWithLoading = async () => {
+    if (isAllLoading) return
+    setIsAllLoading(true)
+    try {
+      await downloadZip(restData, slugName)
+    } finally {
+      setIsAllLoading(false)
+    }
+  }
+
+  const handleClickXLSXWithLoading = async () => {
+    if (isXLSXLoading) return
+    setIsXLSXLoading(true)
+    try {
+      downloadXlsx(restData, slugName)
+    } finally {
+      setIsXLSXLoading(false)
+    }
+  }
 
   return (
     <div>
@@ -38,11 +64,11 @@ const RestDataList: FC<RestDataListProps> = ({
                   <p>Псевдо-категория "Выбор пользователей" удалена</p>
                 </div>
                 <div className='head-main-btn-block'>
-                  <button onClick={() => downloadZip(restData, slugName)}>
-                    Скачать все архивом
+                  <button onClick={handleClicAllkWithLoading}>
+                    {isAllLoading ? <LoadingButton /> : 'Скачать все архивом'}
                   </button>
-                  <button onClick={() => downloadXlsx(restData, slugName)}>
-                    Скачать .xlsx
+                  <button onClick={handleClickXLSXWithLoading}>
+                    {isXLSXLoading ? <LoadingButton /> : 'Скачать .xlsx'}
                   </button>
                 </div>
               </div>

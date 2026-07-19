@@ -16,6 +16,11 @@ type itemDataType = {
     carbohydrates: number
   }
   options?: string
+  size?: {
+    h: number
+    w: number
+    isCorrect?: boolean
+  }
 }
 
 type restDataType = Array<itemDataType>

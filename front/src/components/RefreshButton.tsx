@@ -7,6 +7,7 @@ interface RefreshButtonProps {
   setRestData: (value: restDataType) => void
   setSelectedRestData: (value: restDataType) => void
   setSlugName: (value: string) => void
+  setFilterValue: (value: string) => void
   slugName: string
 }
 
@@ -15,11 +16,13 @@ const RefreshButton: FC<RefreshButtonProps> = ({
   setSelectedRestData,
   setSlugName,
   slugName,
+  setFilterValue,
 }) => {
   const handleRefresh = () => {
     setRestData([])
     setSelectedRestData([])
     setSlugName('')
+    setFilterValue('')
   }
 
   return (

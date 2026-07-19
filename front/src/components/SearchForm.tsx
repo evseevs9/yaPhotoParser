@@ -21,6 +21,7 @@ const SearchForm: FC<SearchFormProps> = ({ setRestData, setSlugName }) => {
 
     if (searchSlugForFetch !== 'invalidSlug') {
       fetch(`https://yaphotoparser.evseevs9.ru/api/${searchSlugForFetch}`)
+        // fetch(`http://localhost:3000/api/${searchSlugForFetch}`)
         .then((res) => {
           if (!res.ok) {
             throw new Error(

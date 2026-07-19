@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useCallback, useState } from 'react'
 import { restDataType, itemDataType } from './types/RestDataType'
 import SearchForm from './components/SearchForm'
 import RestDataList from './components/RestDataList'
@@ -13,11 +13,10 @@ import ThemeButton from './components/ThemeButton'
 
 function App() {
   const [restData, setRestData] = useState<restDataType>([])
-  // console.log(restData)
 
   const [selectedRestData, setSelectedRestData] = useState<restDataType>([])
 
-  const addSelectedItem = (item: itemDataType): void => {
+  const addSelectedItem = useCallback((item: itemDataType): void => {
     setSelectedRestData((prevData) => {
       const isExist = prevData.some(
         (originalItem) => originalItem.id === item.id
@@ -27,13 +26,15 @@ function App() {
       }
       return prevData
     })
-  }
+  }, [])
 
   const removeSelectedItem = (id: number) => {
     setSelectedRestData((prevData) => prevData.filter((item) => item.id !== id))
   }
 
   const [slugName, setSlugName] = useState<string>('')
+
+  const [filterValue, setFilterValue] = useState<string>('')
 
   return (
     <>
@@ -42,6 +43,7 @@ function App() {
         setSelectedRestData={setSelectedRestData}
         setSlugName={setSlugName}
         slugName={slugName}
+        setFilterValue={setFilterValue}
       />
       <ThemeButton />
       <div className='container'>
@@ -79,6 +81,8 @@ function App() {
             restData={restData}
             addSelectedItem={addSelectedItem}
             slugName={slugName}
+            filterValue={filterValue}
+            setFilterValue={setFilterValue}
           />
         </div>
         <div className='column-selected'>

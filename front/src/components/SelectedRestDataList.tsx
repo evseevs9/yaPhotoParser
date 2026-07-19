@@ -1,10 +1,11 @@
-import { FC } from 'react'
+import { FC, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 
 import { restDataType } from '../types/RestDataType'
 import SelectedRestDataItem from './SelectedRestDataItem'
 
 import downloadZip from '../utils/downloadZip'
+import LoadingButton from './LoadingButton'
 
 interface SelectedRestDataItemProps {
   selectedRestData: restDataType
@@ -19,6 +20,18 @@ const SelectedRestDataList: FC<SelectedRestDataItemProps> = ({
   slugName,
   isrestDataLength,
 }) => {
+  const [isSelectLoading, setIsSelectLoading] = useState<boolean>(false)
+
+  const handleClickWithLoading = async () => {
+    if (isSelectLoading) return
+    setIsSelectLoading(true)
+    try {
+      await downloadZip(selectedRestData, slugName)
+    } finally {
+      setIsSelectLoading(false)
+    }
+  }
+
   return (
     <div>
       {isrestDataLength ? (
@@ -36,9 +49,13 @@ const SelectedRestDataList: FC<SelectedRestDataItemProps> = ({
               <div className='head-select-btn-block'>
                 <button
                   disabled={!selectedRestData || selectedRestData.length === 0}
-                  onClick={() => downloadZip(selectedRestData, slugName)}
+                  onClick={handleClickWithLoading}
                 >
-                  Скачать выбранные архивом
+                  {isSelectLoading ? (
+                    <LoadingButton />
+                  ) : (
+                    'Скачать выбранные архивом'
+                  )}
                 </button>
               </div>
             </motion.div>
